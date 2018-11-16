@@ -1,6 +1,6 @@
 {
   "name": "@balticcode/ngx-lightbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An Angular module providing a responsive gallery - including separat albums and a lightbox.",
   "repository": {
     "type": "git",
