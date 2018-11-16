@@ -1,44 +1,201 @@
-# NgxLightbox
+[![npm version](https://img.shields.io/npm/v/@balticcode/ngx-lightbox.svg)](https://www.npmjs.com/package/@balticcode/ngx-lightbox) [![Join the chat at https://gitter.im/balticcode/ngx-lightbox](https://badges.gitter.im/balticcode/ngx-lightbox.svg)](https://gitter.im/balticcode/ngx-lightbox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# ngx-lightbox
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).
+An Angular module providing a responsive gallery - including separat albums and a lightbox.
 
-## Nrwl Extensions for Angular (Nx)
+Feel free to take a look at the [DEMO](https://balticcode.github.io/ngx-lightbox/).
 
-<a href="https://nrwl.io/nx"><img src="https://preview.ibb.co/mW6sdw/nx_logo.png"></a>
+* [Installation](#installation)
+* [Usage](#usage)
+* [API](#api)
 
-Nx is an open source toolkit for enterprise Angular applications.
+## Installation
 
-Nx is designed to help you create and build enterprise grade Angular applications. It provides an opinionated approach to application project structure and patterns.
+Install via npm:
+```
+npm install @balticcode/ngx-lightbox --save
+```
 
-## Quick Start & Documentation
+## Usage
 
-[Watch a 5-minute video on how to get started with Nx.](http://nrwl.io/nx)
+#### Import `NgxLightboxModule`
 
-## Generate your first application
+```ts
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {NgxLightboxModule} from '@balticcode/ngx-lightbox';
 
-Run `ng generate app myapp` to generate an application. When using Nx, you can create multiple applications and libraries in the same CLI workspace. Read more [here](http://nrwl.io/nx).
+@NgModule({
+    imports: [
+        BrowserModule,
+        NgxLightboxModule.forRoot()
+    ],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-## Development server
+#### Optional configuration
 
-Run `ng serve --project=myapp` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The module ships with its own default configuration (listed below) but you can override it as you wish by passing your own configuration object (each property can be ommitted) to the `forRoot()` method as show below:
+```ts
+NgxLightboxModule.forRoot(
+  {
+    galleryOptions: {
+      width: '85%'
+    },
+    albumOptions: {
+      backgroundColor: '#0d47a1',
+      coverImageWidth: '100%',
+      coverImageMaxHeight: '8em',
+      titleColor: '#ffffff'
+    },
+    lightboxOptions: {
+      backdropColor: 'rgba(0,0,0,0.9)',
+      closeIconColor: '#f1f1f1',
+      dotColor: '#ffffff',
+      imageMaxWidth: '90%',
+      imageMaxHeight: '75%'
+    }
+  }
+)
+```
 
-## Code scaffolding
+#### Using the gallery
 
-Run `ng generate component component-name --project=myapp` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Just insert the `<ngx-gallery></ngx-gallery>` tag somewhere inside your app's template:
+```html
+<ngx-gallery [albums]="$album | async"></ngx-gallery>
+```
 
-## Build
+Use the library's service in the approriate component:
+```ts
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent implements OnInit {
 
-Run `ng build --project=myapp` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+  $album: Observable<GalleryAlbum[]>;
 
-## Running unit tests
+  constructor(private _galleryService: LightboxService) {
+  }
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  ngOnInit(): void {
+    this.$album = this._galleryService.loadGallery('/assets/demo-gallery.json');
+  }
+}
+```
 
-## Running end-to-end tests
+You need to define your gallery server-side using a json file with the following schema:
+```json
+{
+  "type": "array",
+  "items": {
+    "properties": {
+      "title": {
+        "type": "string",
+        "title": "Album title",
+        "description": "Specifies the title of the album.",
+        "examples": [
+          "Amazing album title"
+        ]
+      },
+      "files": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "title": "File/Photo title",
+              "description": "Specifies the title of the photo.",
+              "examples": [
+                "Intro"
+              ]
+            },
+            "fileName": {
+              "type": "string",
+              "title": "File/Photo path",
+              "description": "Specifies the path of the photo.",
+              "examples": [
+                "https://images.unsplash.com/photo-1519996121844-d53802c2db84?ixlib=rb-0.3.5&s=d1dee2a9fa3c638b22032ccc870d6a50&auto=format&fit=crop&w=634&q=80"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+Following the above schema the resulting file should look like the following:
+```json
+[
+  {
+    "title": "MINIMALISM",
+    "files": [
+      {
+        "title": "Intro",
+        "fileName": "https://images.unsplash.com/photo-1519996121844-d53802c2db84?ixlib=rb-0.3.5&s=d1dee2a9fa3c638b22032ccc870d6a50&auto=format&fit=crop&w=634&q=80"
+      },
+      {
+        "title": "1",
+        "fileName": "https://images.unsplash.com/photo-1520013817300-1f4c1cb245ef?ixlib=rb-0.3.5&s=8ca7af7198a3db03a788fa403f253ad0&auto=format&fit=crop&w=1387&q=80"
+      },
+      {
+        "title": "2",
+        "fileName": "https://images.unsplash.com/photo-1520079227293-0888e274dd20?ixlib=rb-0.3.5&s=b290bf50e442176e8d5b5d14e2d63747&auto=format&fit=crop&w=700&q=80"
+      }
+    ]
+  }
+]
+```
 
-## Further help
+The lightbox provides simple key commands:
+- `left`: previous image
+- `right`: next image
+- `esc`: close lightbox
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## API
+
+#### LightboxService
+
+##### Methods
+
+- `loadGallery(configPath: string): Observable<GalleryAlbum[]>`: Loads the gallery from the specified file (e.g. '/assets/demo-gallery.json').
+
+#### ModuleOptions
+
+###### Properties
+
+- `galleryOptions` (`IGalleryOptions?`): Object containing gallery configuration.
+- `albumOprions` (`IAlbumOptions?`): Object containing album configuration.
+- `lightboxOption` (`ILightboxOptions?`): Object containing lightbox configuration.
+
+#### IGalleryOptions
+
+###### Properties
+
+- `width` (`string?`): Setting the width of the gallery relative to its parent (Allowed values are same as CSS `width`).
+
+#### IAlbumOptions
+
+#### Properties
+
+- `backgroundColor` (`string?`): Setting the background color of the album element (Allowed values are same as CSS `background-color`).
+- `coverImageWidth` (`string?`): Setting the width of the albums cover image relative to the album element (Allowed values are same as CSS `width`).
+- `coverImageMaxHeight` (`string?`): Setting the maximum height of the albums cover image relative to the album element (Allowed values are same as CSS `max-height`).
+- `titleColor` (`string?`): Setting the text color of the albums title (Allowed values are same as CSS `color`).
+
+#### ILightboxOptions
+
+###### Properties
+
+- `backdropColor` (`string?`): Setting the lightbox' backdrop color (Allowed values are same as CSS `background-color`).
+- `closeIconColor` (`string?`): Setting the lightbox' close icon color (Allowed values are same as CSS `color`).
+- `dotColor` (`string?`): Setting the lightbox' image indicator dot color (Allowed values are same as CSS `background-color`).
+- `imageMaxWidth` (`string?`): Setting the maximum width of the currently displayed image relative to the lightbox element (Allowed values are same as CSS `max-width`).
+- `imageMaxHeight` (`string?`): Setting the maximum height of the currently displayed image relative to the lightbox element (Allowed values are same as CSS `max-height`).

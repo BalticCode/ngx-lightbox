@@ -1,0 +1,5 @@
+<div class="gallery" [style.width]="config.width">
+  <ngxl-album *ngFor="let album of albums" [album]="album" class="gallery__album" (click)="showLightBox(album)"></ngxl-album>
+</div>
+
+<ngxl-lightbox></ngxl-lightbox>

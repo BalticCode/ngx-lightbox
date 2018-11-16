@@ -1,0 +1,79 @@
+.lightbox {
+  padding-top: 1em;
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  * {
+    opacity: 1;
+  }
+
+  &__close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    font-size: 2rem;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  &__dots-wrapper {
+    display: table;
+    margin: 0 auto;
+  }
+
+  &__dots {
+    list-style-type: none;
+    -webkit-padding-start: 0;
+  }
+
+  &__dot {
+    display: inline;
+    margin: 0 8px;
+
+    a {
+      cursor: pointer;
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      border: 1px solid transparent;
+      outline: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      -webkit-transition: background-color 0.25s, border-color 0.25s;
+      -moz-transition: background-color 0.25s, border-color 0.25s;
+      transition: background-color 0.25s, border-color 0.25s;
+
+      &.active {
+        border-color: #fff;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__file {
+    margin: auto;
+    display: block;
+
+    &-nonDraggableFile {
+      -webkit-user-drag: none;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+}

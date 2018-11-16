@@ -1,0 +1,10 @@
+.gallery {
+  margin: auto;
+  display: grid;
+  grid-gap: 0.5em;
+  grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+
+  &__album {
+    cursor: pointer;
+  }
+}

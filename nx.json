@@ -1,5 +1,5 @@
 {
-  "npmScope": "ngx-lightbox",
+  "npmScope": "balticcode",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -7,5 +7,15 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "ngx-lightbox": {
+      "tags": []
+    },
+    "ngx-lightbox-demo": {
+      "tags": []
+    },
+    "ngx-lightbox-demo-e2e": {
+      "tags": []
+    }
+  }
 }

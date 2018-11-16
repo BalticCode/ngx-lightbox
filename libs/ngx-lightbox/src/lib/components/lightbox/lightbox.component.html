@@ -1,0 +1,16 @@
+<!--<section *ngIf="isVisible" class="lightbox" (swipeleft)="nextSlide()" (swiperight)="prevSlide()">-->
+<section *ngIf="isVisible" class="lightbox" [style.background-color]="config.backdropColor">
+  <a (click)="hide()" class="lightbox__close" [style.color]="config.closeIconColor">X</a>
+  <div class="lightbox__dots-wrapper">
+    <ul class="lightbox__dots">
+      <li *ngFor="let file of files; let dotIndex = index;" class="lightbox__dot">
+        <a [class.active]="isCurrentFileIndex(dotIndex)" [style.background-color]="config.dotColor"
+          (click)="setCurrentFileIndex(dotIndex);">{{dotIndex}}</a>
+      </li>
+    </ul>
+  </div>
+  <ng-container *ngFor="let file of files; let fileIndex = index;">
+    <img [src]="file.fileName" *ngIf="isCurrentFileIndex(fileIndex)" class="lightbox__file lightbox__file-nonDraggableFile"
+      [style.maxWidth]="config.imageMaxWidth" [style.maxHeight]="config.imageMaxHeight" />
+  </ng-container>
+</section>

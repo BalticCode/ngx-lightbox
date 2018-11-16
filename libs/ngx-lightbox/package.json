@@ -1,0 +1,31 @@
+{
+  "name": "@balticcode/ngx-lightbox",
+  "version": "1.0.0",
+  "description": "An Angular module providing a responsive gallery - including separat albums and a lightbox.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BalticCode/ngx-lightbox.git"
+  },
+  "keywords": [
+    "angular",
+    "module",
+    "lightbox",
+    "lightbox-gallery",
+    "component",
+    "service"
+  ],
+  "author": "BalticCode (b4lt1c.c0d3@gmail.com)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/BalticCode/ngx-lightbox/issues"
+  },
+  "homepage": "https://github.com/BalticCode/ngx-lightbox#readme",
+  "dependencies": {
+    "@balticcode/ngx-hotkeys": "^2.1.3"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "@balticcode/ngx-hotkeys": ">=2.1.3"
+  }
+}

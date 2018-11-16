@@ -1,0 +1,14 @@
+.album {
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 0.25em;
+
+  &__cover {
+    object-fit: cover;
+  }
+  &__title {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    line-height: 2.5em;
+  }
+}

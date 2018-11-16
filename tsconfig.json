@@ -16,6 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@balticcode/ngx-lightbox": [
+        "libs/ngx-lightbox/src/index.ts"
+      ]
     }
   },
   "exclude": [
