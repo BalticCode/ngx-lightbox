@@ -14,7 +14,8 @@ import { defaultConfig } from '../../defaults';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent {
-  @ViewChild(LightboxComponent, { static: true }) private lightBox: LightboxComponent;
+  @ViewChild(LightboxComponent, { static: true })
+  private lightBox: LightboxComponent;
 
   @Input() public albums: GalleryAlbum[];
 

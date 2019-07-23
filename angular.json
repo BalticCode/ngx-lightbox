@@ -31,9 +31,7 @@
               "libs/ngx-lightbox/tsconfig.lib.json",
               "libs/ngx-lightbox/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -61,9 +59,7 @@
               "apps/ngx-lightbox-demo/src/favicon.ico",
               "apps/ngx-lightbox-demo/src/assets"
             ],
-            "styles": [
-              "apps/ngx-lightbox-demo/src/styles.scss"
-            ],
+            "styles": ["apps/ngx-lightbox-demo/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -117,9 +113,7 @@
             "polyfills": "apps/ngx-lightbox-demo/src/polyfills.ts",
             "tsConfig": "apps/ngx-lightbox-demo/tsconfig.spec.json",
             "karmaConfig": "apps/ngx-lightbox-demo/karma.conf.js",
-            "styles": [
-              "apps/ngx-lightbox-demo/src/styles.scss"
-            ],
+            "styles": ["apps/ngx-lightbox-demo/src/styles.scss"],
             "scripts": [],
             "assets": [
               "apps/ngx-lightbox-demo/src/favicon.ico",
@@ -134,9 +128,7 @@
               "apps/ngx-lightbox-demo/tsconfig.app.json",
               "apps/ngx-lightbox-demo/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -162,9 +154,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/ngx-lightbox-demo-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -175,12 +165,23 @@
       "typescriptMismatch": false,
       "versionMismatch": false
     },
-    "defaultCollection": "@nrwl/schematics"
+    "defaultCollection": "@nrwl/angular"
   },
   "defaultProject": "ngx-lightbox-demo",
   "schematics": {
     "@nrwl/schematics:component": {
       "styleext": "scss"
+    },
+    "@nrwl/schematics:library": {
+      "unitTestRunner": "karma",
+      "framework": "angular"
+    },
+    "@nrwl/schematics:application": {
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "protractor"
+    },
+    "@nrwl/schematics:node-application": {
+      "framework": "express"
     }
   }
 }
