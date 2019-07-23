@@ -31,7 +31,7 @@
               "libs/ngx-lightbox/tsconfig.lib.json",
               "libs/ngx-lightbox/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/ngx-lightbox/**"]
           }
         }
       }
@@ -128,7 +128,7 @@
               "apps/ngx-lightbox-demo/tsconfig.app.json",
               "apps/ngx-lightbox-demo/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/ngx-lightbox-demo/**"]
           }
         }
       }
@@ -154,7 +154,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/ngx-lightbox-demo-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/ngx-lightbox-demo-e2e/**"]
           }
         }
       }
