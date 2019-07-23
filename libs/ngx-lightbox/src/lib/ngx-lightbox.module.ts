@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { NgxHotkeysModule } from '@balticcode/ngx-hotkeys';
+
 import { ConfigToken } from './tokens';
 import { ModuleConfig } from './interfaces';
 import { GalleryComponent } from './components/gallery/gallery.component';
@@ -12,8 +12,7 @@ import { LightboxComponent } from './components/lightbox/lightbox.component';
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
-    NgxHotkeysModule.forRoot({ disableCheatSheet: true })
+    HttpClientModule
   ],
   declarations: [GalleryComponent, AlbumComponent, LightboxComponent],
   exports: [GalleryComponent, AlbumComponent, LightboxComponent]
