@@ -9,21 +9,22 @@ import { HotkeyOptions } from '../interfaces';
   providedIn: 'root'
 })
 export class HotkeyService {
-  private defaults: Partial<HotkeyOptions> = {
-    element: this.document
-  };
+  private document?: Document;
 
-  constructor(
-    private eventManager: EventManager,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
+  private defaults: Partial<HotkeyOptions>;
+
+  constructor(private eventManager: EventManager, @Inject(DOCUMENT) doc?: any) {
+    this.document = doc;
+
+    this.defaults = { element: this.document };
+  }
 
   public addShortcut(options: Partial<HotkeyOptions>) {
     const merged = { ...this.defaults, ...options };
     const event = `keydown.${merged.keys}`;
 
     return new Observable(observer => {
-      const handler = e => {
+      const handler = (e: Event) => {
         e.preventDefault();
         observer.next(e);
       };
