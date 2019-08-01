@@ -9,14 +9,13 @@ import { NgxLightboxModule } from '@balticcode/ngx-lightbox';
   imports: [
     BrowserModule,
     NgxLightboxModule.forRoot({
-      galleryOptions: {
-        width: '90%'
-      },
-      lightboxOptions: {
-        dotColor: 'red',
-        closeIconColor: 'lime'
-
-      }
+      // galleryOptions: {
+      //   width: '90%'
+      // },
+      // lightboxOptions: {
+      //   dotColor: 'red',
+      //   closeIconColor: 'lime'
+      // }
     })
   ],
   providers: [],

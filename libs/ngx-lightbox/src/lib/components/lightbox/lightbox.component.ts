@@ -1,5 +1,5 @@
+import { HotkeyService } from './../../services/hotkey.service';
 import { Component, OnInit, Inject } from '@angular/core';
-import { NgxHotkeysService } from '@balticcode/ngx-hotkeys';
 import {
   ModuleConfig,
   GalleryAlbum,
@@ -23,11 +23,11 @@ export class LightboxComponent implements OnInit {
 
   private readonly _hotKeys: Array<{ key: string; binding: () => void }> = [
     {
-      key: 'left',
+      key: 'arrowleft',
       binding: () => this.prevFile()
     },
     {
-      key: 'right',
+      key: 'arrowright',
       binding: () => this.nextFile()
     },
     {
@@ -36,7 +36,10 @@ export class LightboxComponent implements OnInit {
     }
   ];
 
-  constructor(@Inject(ConfigToken) private _config: ModuleConfig, private hotKeyService: NgxHotkeysService) {
+  constructor(
+    @Inject(ConfigToken) private _config: ModuleConfig,
+    private hotKeyService: HotkeyService
+  ) {
     this.config = {
       ...defaultConfig.lightboxOptions,
       ...this._config.lightboxOptions
@@ -79,13 +82,13 @@ export class LightboxComponent implements OnInit {
 
   private setupHotKeys() {
     this._hotKeys.forEach((hotKey: { key: string; binding: () => void }) => {
-      this.hotKeyService.register({
-        combo: hotKey.key,
-        handler: event => {
+      this.hotKeyService
+        .addShortcut({
+          keys: hotKey.key
+        })
+        .subscribe(() => {
           hotKey.binding();
-          return false;
-        }
-      });
+        });
     });
   }
 }

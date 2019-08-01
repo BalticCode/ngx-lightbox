@@ -32,3 +32,21 @@ export interface GalleryFile {
   fileName: string;
   title: string;
 }
+
+export interface HotkeyOptions {
+  element: any;
+  /**
+   * Key binding.
+   */
+  keys: string | string[];
+  /**
+   * Description shown in cheatsheet.
+   */
+  description: string;
+  /**
+   * Custom display format used in cheatsheet.
+   */
+  format: string[];
+  handler: () => void;
+}
+
