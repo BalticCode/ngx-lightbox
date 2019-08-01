@@ -52,7 +52,7 @@ NgxLightboxModule.forRoot(
     },
     lightboxOptions: {
       backdropColor: 'rgba(0,0,0,0.9)',
-      closeIconColor: '#f1f1f1',
+      iconColor: '#f1f1f1',
       dotColor: '#ffffff',
       imageMaxWidth: '90%',
       imageMaxHeight: '75%'
@@ -195,7 +195,7 @@ The lightbox provides simple key commands:
 ###### Properties
 
 - `backdropColor` (`string?`): Setting the lightbox' backdrop color (Allowed values are same as CSS `background-color`).
-- `closeIconColor` (`string?`): Setting the lightbox' close icon color (Allowed values are same as CSS `color`).
+- `iconColor` (`string?`): Setting the lightbox' close icon color (Allowed values are same as CSS `color`).
 - `dotColor` (`string?`): Setting the lightbox' image indicator dot color (Allowed values are same as CSS `background-color`).
 - `imageMaxWidth` (`string?`): Setting the maximum width of the currently displayed image relative to the lightbox element (Allowed values are same as CSS `max-width`).
 - `imageMaxHeight` (`string?`): Setting the maximum height of the currently displayed image relative to the lightbox element (Allowed values are same as CSS `max-height`).

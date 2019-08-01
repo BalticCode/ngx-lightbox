@@ -17,7 +17,7 @@ export interface IAlbumOptions {
 
 export interface ILightboxOptions {
   backdropColor?: string;
-  closeIconColor?: string;
+  iconColor?: string;
   dotColor?: string;
   imageMaxWidth?: string;
   imageMaxHeight?: string;

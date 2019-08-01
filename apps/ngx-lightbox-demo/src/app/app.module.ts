@@ -14,7 +14,7 @@ import { NgxLightboxModule } from '@balticcode/ngx-lightbox';
       // },
       // lightboxOptions: {
       //   dotColor: 'red',
-      //   closeIconColor: 'lime'
+      //   iconColor: 'lime'
       // }
     })
   ],

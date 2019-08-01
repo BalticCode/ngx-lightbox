@@ -1,6 +1,8 @@
 <!--<section *ngIf="isVisible" class="lightbox" (swipeleft)="nextSlide()" (swiperight)="prevSlide()">-->
 <section *ngIf="isVisible" class="lightbox" [style.background-color]="config.backdropColor">
-  <a (click)="hide()" class="lightbox__close" [style.color]="config.closeIconColor">X</a>
+  <a (click)="hide()" class="lightbox__close" [style.color]="config.iconColor">X</a>
+  <a (click)="prevFile()" class="lightbox__previous" [style.border-right-color]="config.iconColor"></a>
+  <a (click)="nextFile()" class="lightbox__next" [style.border-left-color]="config.iconColor"></a>
   <div class="lightbox__dots-wrapper">
     <ul class="lightbox__dots">
       <li *ngFor="let file of files; let dotIndex = index;" class="lightbox__dot">

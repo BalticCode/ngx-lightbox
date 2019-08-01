@@ -11,7 +11,7 @@ export const defaultConfig: ModuleConfig = {
   galleryOptions: { width: '85%' },
   lightboxOptions: {
     backdropColor: 'rgba(0,0,0,0.9)',
-    closeIconColor: '#f1f1f1',
+    iconColor: '#f1f1f1',
     dotColor: '#ffffff',
     imageMaxWidth: '90%',
     imageMaxHeight: '75%'

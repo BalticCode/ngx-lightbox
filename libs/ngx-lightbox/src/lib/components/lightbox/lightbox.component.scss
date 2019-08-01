@@ -23,6 +23,38 @@
     cursor: pointer;
   }
 
+  &__previous {
+    position: absolute;
+    top: 50%;
+    left: 35px;
+    font-size: 2rem;
+    transition: 0.3s;
+    cursor: pointer;
+
+    width: 0;
+    height: 0;
+    border-top: 1.5rem solid transparent;
+    border-bottom: 1.5rem solid transparent;
+
+    border-right: 1.5rem solid;
+  }
+
+  &__next {
+    position: absolute;
+    top: 50%;
+    right: 35px;
+    font-size: 2rem;
+    transition: 0.3s;
+    cursor: pointer;
+
+    width: 0;
+    height: 0;
+    border-top: 1.5rem solid transparent;
+    border-bottom: 1.5rem solid transparent;
+
+    border-left: 1.5rem solid;
+  }
+
   &__dots-wrapper {
     display: table;
     margin: 0 auto;
