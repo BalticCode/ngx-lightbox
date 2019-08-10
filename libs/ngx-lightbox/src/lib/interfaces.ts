@@ -21,10 +21,12 @@ export interface ILightboxOptions {
   dotColor?: string;
   imageMaxWidth?: string;
   imageMaxHeight?: string;
+  captionColor?: string;
 }
 
 export interface GalleryAlbum {
   title: string;
+  path?: string;
   files?: GalleryFile[];
 }
 
