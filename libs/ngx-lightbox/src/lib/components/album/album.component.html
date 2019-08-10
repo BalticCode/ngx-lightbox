@@ -1,14 +1,7 @@
-<div
-  class="album"
-  [style.background-color]="config.backgroundColor"
->
-  <img
-    *ngIf="!!album.files && !!album.files.length"
-    class="album__cover"
-    [src]="album.files[0].fileName"
-    [style.width]="config.coverImageWidth"
-    [style.maxHeight]="config.coverImageMaxHeight"
-  />
+<div class="album" [style.background-color]="config.backgroundColor">
+  <img *ngIf="!!album.files && !!album.files.length" class="album__cover"
+    [src]="album.files[0] | pathResolve:album.path" [style.width]="config.coverImageWidth"
+    [style.maxHeight]="config.coverImageMaxHeight" />
   <h5 class="album__title" [style.color]="config.titleColor">
     {{ album.title }}
   </h5>
