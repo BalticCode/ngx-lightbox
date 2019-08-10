@@ -8,15 +8,7 @@ import { NgxLightboxModule } from '@balticcode/ngx-lightbox';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    NgxLightboxModule.forRoot({
-      // galleryOptions: {
-      //   width: '90%'
-      // },
-      // lightboxOptions: {
-      //   dotColor: 'red',
-      //   iconColor: 'lime'
-      // }
-    })
+    NgxLightboxModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
