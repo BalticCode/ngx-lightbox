@@ -16,7 +16,7 @@ export class AlbumComponent {
   constructor(@Inject(ConfigToken) private _config: ModuleConfig) {
     this.config = {
       ...defaultConfig.albumOptions,
-      ...this._config.albumOptions
+      ...(this._config ? this._config.albumOptions : {})
     };
   }
 }

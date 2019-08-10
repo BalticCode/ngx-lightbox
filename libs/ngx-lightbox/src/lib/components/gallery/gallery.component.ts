@@ -24,7 +24,7 @@ export class GalleryComponent {
   constructor(@Inject(ConfigToken) private _config: ModuleConfig) {
     this.config = {
       ...defaultConfig.galleryOptions,
-      ...this._config.galleryOptions
+      ...(this._config ? this._config.galleryOptions : {})
     };
   }
 
