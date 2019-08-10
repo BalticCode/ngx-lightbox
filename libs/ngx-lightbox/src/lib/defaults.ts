@@ -12,8 +12,9 @@ export const defaultConfig: ModuleConfig = {
   lightboxOptions: {
     backdropColor: 'rgba(0,0,0,0.9)',
     iconColor: '#f1f1f1',
-    dotColor: '#ffffff',
+    dotColor: '#0d47a1',
     imageMaxWidth: '90%',
-    imageMaxHeight: '75%'
+    imageMaxHeight: '75%',
+    captionColor: '#f1f1f1'
   }
 };
