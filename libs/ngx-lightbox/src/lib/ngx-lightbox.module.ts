@@ -8,17 +8,18 @@ import { ModuleConfig } from './interfaces';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { AlbumComponent } from './components/album/album.component';
 import { LightboxComponent } from './components/lightbox/lightbox.component';
+import { PathResolvePipe } from './pipes/path-resolve.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule
   ],
-  declarations: [GalleryComponent, AlbumComponent, LightboxComponent],
+  declarations: [GalleryComponent, AlbumComponent, LightboxComponent, PathResolvePipe],
   exports: [GalleryComponent, AlbumComponent, LightboxComponent]
 })
 export class NgxLightboxModule {
-  static forRoot(config: ModuleConfig): ModuleWithProviders {
+  static forRoot(config?: ModuleConfig): ModuleWithProviders {
     return {
       ngModule: NgxLightboxModule,
       providers: [{ provide: ConfigToken, useValue: config }]
