@@ -1,5 +1,6 @@
 import { HotkeyService } from './../../services/hotkey.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import * as Hammer from 'hammerjs';
 import {
   ModuleConfig,
   GalleryAlbum,
@@ -9,6 +10,8 @@ import { ConfigToken } from './../../tokens';
 import { GalleryFile } from '../../interfaces';
 import { defaultConfig } from '../../defaults';
 
+const hammerAvailable = !!(typeof window !== 'undefined' ? (window as any).Hammer : undefined);
+
 @Component({
   selector: 'ngxl-lightbox',
   templateUrl: './lightbox.component.html',
@@ -16,8 +19,12 @@ import { defaultConfig } from '../../defaults';
 })
 export class LightboxComponent implements OnInit {
   isVisible = false;
+  album: GalleryAlbum;
   files: GalleryFile[] = [];
   config: ILightboxOptions;
+
+  @ViewChild('lightbox', { static: true })
+  lightbox: HTMLElement;
 
   private currentIndex = 0;
 
@@ -42,15 +49,19 @@ export class LightboxComponent implements OnInit {
   ) {
     this.config = {
       ...defaultConfig.lightboxOptions,
-      ...this._config.lightboxOptions
+      ...(this._config ? this._config.lightboxOptions : {})
     };
   }
 
   ngOnInit(): void {
     this.setupHotKeys();
+    if (hammerAvailable && this.lightbox) {
+      this.setupHammerJs();
+    }
   }
 
   show(album: GalleryAlbum): void {
+    this.album = album;
     this.files = album.files;
     this.isVisible = true;
   }
@@ -80,7 +91,7 @@ export class LightboxComponent implements OnInit {
     return false;
   }
 
-  private setupHotKeys() {
+  private setupHotKeys(): void {
     this._hotKeys.forEach((hotKey: { key: string; binding: () => void }) => {
       this.hotKeyService
         .addShortcut({
@@ -89,6 +100,16 @@ export class LightboxComponent implements OnInit {
         .subscribe(() => {
           hotKey.binding();
         });
+    });
+  }
+
+  private setupHammerJs(): void {
+    const hammertime = new Hammer(this.lightbox);
+    hammertime.on('swipeleft', () => {
+      this.nextFile();
+    });
+    hammertime.on('swiperight', () => {
+      this.prevFile();
     });
   }
 }

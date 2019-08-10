@@ -1,8 +1,10 @@
-<!--<section *ngIf="isVisible" class="lightbox" (swipeleft)="nextSlide()" (swiperight)="prevSlide()">-->
-<section *ngIf="isVisible" class="lightbox" [style.background-color]="config.backdropColor">
+<section #lightbox *ngIf="isVisible" class="lightbox" [style.background-color]="config.backdropColor"
+  (swipeleft)="nextFile()" (swiperight)="prevFile()">
   <a (click)="hide()" class="lightbox__close" [style.color]="config.iconColor">X</a>
-  <a (click)="prevFile()" class="lightbox__previous" [style.border-right-color]="config.iconColor"></a>
-  <a (click)="nextFile()" class="lightbox__next" [style.border-left-color]="config.iconColor"></a>
+  <a (click)="prevFile()" class="lightbox__previous" *ngIf="files.length > 1"
+    [style.border-right-color]="config.iconColor"></a>
+  <a (click)="nextFile()" class="lightbox__next" *ngIf="files.length > 1"
+    [style.border-left-color]="config.iconColor"></a>
   <div class="lightbox__dots-wrapper">
     <ul class="lightbox__dots">
       <li *ngFor="let file of files; let dotIndex = index;" class="lightbox__dot">
@@ -12,7 +14,9 @@
     </ul>
   </div>
   <ng-container *ngFor="let file of files; let fileIndex = index;">
-    <img [src]="file.fileName" *ngIf="isCurrentFileIndex(fileIndex)" class="lightbox__file lightbox__file-nonDraggableFile"
-      [style.maxWidth]="config.imageMaxWidth" [style.maxHeight]="config.imageMaxHeight" />
+    <img [src]="file | pathResolve:album.path" *ngIf="isCurrentFileIndex(fileIndex)" [attr.alt]="file.title"
+      class="lightbox__file lightbox__file-nonDraggableFile" [style.maxWidth]="config.imageMaxWidth"
+      [style.maxHeight]="config.imageMaxHeight" />
+    <p style="color: white; text-align: center;" [style.color]="config.captionColor" *ngIf="isCurrentFileIndex(fileIndex) && file.fileName">{{file.title}}</p>
   </ng-container>
 </section>
